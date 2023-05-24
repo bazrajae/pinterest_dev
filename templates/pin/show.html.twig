@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+ {% block title %}{{ pin.title }}{% endblock %}
+ {% block body %}
+ <div class = "row">
+<div class = "col-md-6 mx-auto">
+<article>
+<h1>{{ pin.title }}</h1>
+<p>{{ pin.description }}</p>
+<p>Submitted {{ pin.createdAt|date("d/m/Y h:i") }}</p>
+<p>last modification {{ pin.updatedAt|date("d/m/Y h:i") }}</p>
+</article>
+<a href="{{ path('app_pin_edit', {id: pin.id}) }}">Edit</a>
+{# <a href="{{ path('app_pin_delete', {id: pin.id}) }}">Delete</a> #}
+<a href="#" onclick="event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-pin-delete-form').submit();">Delete | </a>
+
+<a href="{{ path('app_home') }}">Go Back</a>
+
+<form id="js-pin-delete-form" action="{{ path('app_pin_delete', {id: pin.id}) }}" method="post" style="display:none;">
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+</div>
+</div>
+ {% endblock %}
