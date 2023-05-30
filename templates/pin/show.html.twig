@@ -2,10 +2,11 @@
  {% block title %}{{ pin.title }}{% endblock %}
  {% block body %}
  <div class = "row">
-<div class = "col-md-6 mx-auto">
+<div align="center" class = "col-md-6 mx-auto">
 <article>
-<h1>{{ pin.title }}</h1>
-<p>{{ pin.description }}</p>
+<h1><u>{{ pin.title }}</u></h1>
+<img src = {{ pin.imageName }} width="200" height="300">
+<h5>{{ pin.description }}</h5>
 <p>Submitted {{ pin.createdAt|date("d/m/Y h:i") }}</p>
 <p>last modification {{ pin.updatedAt|date("d/m/Y h:i") }}</p>
 </article>

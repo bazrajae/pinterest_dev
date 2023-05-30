@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Traits\Timestampable;
 use App\Repository\PinRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\HasLifecycleCallbacks]
 class Pin
 {
+    use Timestampable;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -34,15 +35,15 @@ class Pin
     private ?string $description = null;
 
    
-    #[ORM\Column(type:'datetime_immutable', options:['default'=>'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeImmutable $createdAt = null;
+//     #[ORM\Column(type:'datetime_immutable', options:['default'=>'CURRENT_TIMESTAMP'])]
+//     private ?\DateTimeImmutable $createdAt = null;
 
     
-#[ORM\Column(type:'datetime_immutable', options:['default'=>'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeImmutable $updatedAt = null;
+// #[ORM\Column(type:'datetime_immutable', options:['default'=>'CURRENT_TIMESTAMP'])]
+//     private ?\DateTimeImmutable $updatedAt = null;
 
 #[ORM\Column(length: 255, nullable: true)]
-private ?string $imageName = null;
+private ?string $imageName = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
 
   
 
@@ -77,39 +78,39 @@ private ?string $imageName = null;
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    // public function getCreatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->createdAt;
+    // }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+    // public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    // {
+    //     $this->createdAt = $createdAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+    // public function getUpdatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->updatedAt;
+    // }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
+    // public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    // {
+    //     $this->updatedAt = $updatedAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    #[ORM\PrePersist]
-    #[ORM\PreUpdate]
-    public function updateTimestamps()
-    {
-        if ($this->getCreatedAt() === null) { //verifier si getcreted existe si oui creer nv time sinon modifier
-            $this->setCreatedAt(new \DateTimeImmutable);
-        }
-        $this->setUpdatedAt(new \DateTimeImmutable);//des q on ecree entite y a resporistry qui s ecrit automati
-    }
+    // #[ORM\PrePersist]
+    // #[ORM\PreUpdate]
+    // public function updateTimestamps()
+    // {
+    //     if ($this->getCreatedAt() === null) { //verifier si getcreted existe si oui creer nv time sinon modifier
+    //         $this->setCreatedAt(new \DateTimeImmutable);
+    //     }
+    //     $this->setUpdatedAt(new \DateTimeImmutable);//des q on ecree entite y a resporistry qui s ecrit automati
+    // }
 
     public function getImageName(): ?string
     {
